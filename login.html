@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Account | Bank System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+  <div class="container">
+    <header class="header">
+      <h1>🔐 Access Your Account</h1>
+      <p>Secure Login Portal</p>
+    </header>
+
+    <!-- Login Form -->
+    <div class="card" id="loginCard">
+      <form id="accessForm">
+        <label>Full Name</label>
+        <input id="accessName" required>
+
+        <label>PIN</label>
+        <input type="password" id="accessPin" pattern="[0-9]{4}" required>
+
+        <button type="submit" class="btn">Access</button>
+      </form>
+      <p style="margin-top:15px;">Don’t have an account? 
+        <a href="index.html">Create one</a>
+      </p>
+    </div>
+
+    <!-- Manage Account -->
+    <div class="card hidden" id="manageCard">
+      <div class="manage-header">
+        <h2 id="welcomeMessage">Welcome</h2>
+        <button class="btn" onclick="logout()">Logout</button>
+      </div>
+      <div id="accountsList" class="account-grid"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="accountModal" class="card hidden">
+      <h2 id="modalTitle">Account Details</h2>
+      <div id="accountDetails"></div>
+      <h3>Transactions</h3>
+      <ul id="transactionHistory"></ul>
+      <input type="number" id="transactionAmount" placeholder="Enter Amount ₹">
+      <div class="modal-buttons">
+        <button class="btn btn-success" onclick="deposit()">Deposit</button>
+        <button class="btn btn-danger" onclick="withdraw()">Withdraw</button>
+        <button class="btn btn-info" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="notification" class="notification"></div>
+  <footer>© 2025 Bank System Demo | Developed by Kunal Paldewar</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

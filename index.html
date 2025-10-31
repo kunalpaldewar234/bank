@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account | Bank System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+  <div class="container">
+    <header class="header">
+      <h1>🏦 Bank Account Management System</h1>
+      <p>Create a New Account</p>
+    </header>
+
+    <!-- Create Account Form -->
+    <div class="card" id="createCard">
+      <h2>Create New Account</h2>
+      <form id="createAccountForm">
+        <label>Full Name</label>
+        <input id="name" required>
+
+        <label>Date of Birth</label>
+        <input type="date" id="dob" required>
+
+        <label>Phone (10 digits)</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+
+        <label>Account Type</label>
+        <select id="accountType" required>
+          <option value="">Select</option>
+          <option>Savings</option>
+          <option>Current</option>
+        </select>
+
+        <label>Address</label>
+        <input id="address" required>
+
+        <label>IFSC Code</label>
+        <input id="ifsc" pattern="[A-Z]{4}[0-9]{7}" required>
+
+        <label>Initial Balance (₹)</label>
+        <input type="number" id="initialBalance" min="500" required>
+
+        <label>4-Digit PIN</label>
+        <input type="password" id="pin" pattern="[0-9]{4}" required>
+
+        <button type="submit" class="btn">Create Account</button>
+      </form>
+
+      <p style="margin-top:15px;">Already have an account? 
+        <a href="login.html">Access here</a>
+      </p>
+    </div>
+  </div>
+
+  <div id="notification" class="notification"></div>
+  <footer>© 2025 Bank System Demo | Developed by Kunal Paldewar</footer>
+  <script src="script.js"></script>
+</body>
+</html>

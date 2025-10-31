@@ -1,0 +1,120 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.container { max-width: 1000px; margin: auto; padding: 20px; }
+.header { text-align: center; color: white; margin-bottom: 25px; }
+.header h1 { font-size: 2.3rem; }
+
+.theme-toggle {
+  position: fixed; top: 20px; right: 20px;
+  background: rgba(255,255,255,0.2);
+  border: none; border-radius: 50%; width: 45px; height: 45px;
+  color: white; font-size: 1.3rem; cursor: pointer;
+  transition: 0.3s; backdrop-filter: blur(10px);
+}
+.theme-toggle:hover { transform: scale(1.1); }
+
+.card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+.card:hover { transform: translateY(-5px); }
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+  margin: 5px 0 12px 0;
+  transition: 0.3s;
+}
+input:focus, select:focus { border-color: #667eea; outline: none; }
+
+label { font-weight: bold; }
+
+.btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white; border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer; font-weight: 600;
+  margin: 5px; transition: 0.3s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+.btn-success { background: linear-gradient(135deg, #48bb78, #38a169); }
+.btn-danger { background: linear-gradient(135deg, #f56565, #e53e3e); }
+.btn-info { background: linear-gradient(135deg, #4299e1, #3182ce); }
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.account-card {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white; border-radius: 15px;
+  padding: 20px; cursor: pointer;
+  position: relative; transition: 0.3s;
+}
+.account-card:hover { transform: scale(1.03); }
+
+.delete-btn {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(255,255,255,0.2);
+  border: none; color: white; border-radius: 50%;
+  width: 30px; height: 30px; cursor: pointer;
+}
+
+.notification {
+  position: fixed; top: 20px; left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 25px; background: #48bb78;
+  color: white; border-radius: 8px;
+  opacity: 0; transition: 0.3s;
+  z-index: 1000;
+}
+.notification.show { opacity: 1; transform: translate(-50%, 10px); }
+.notification.error { background: #e53e3e; }
+
+.hidden { display: none; }
+
+body.dark {
+  background: linear-gradient(135deg, #1a202c, #2d3748);
+  color: #e2e8f0;
+}
+body.dark .card { background: rgba(45,55,72,0.95); color: #e2e8f0; }
+
+footer {
+  text-align: center;
+  color: white;
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+
+.manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-buttons {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .header h1 { font-size: 1.8rem; }
+  .btn { width: 100%; }
+}
