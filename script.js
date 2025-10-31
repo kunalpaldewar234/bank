@@ -13,50 +13,58 @@ function showNotification(msg, type = "success") {
   setTimeout(() => n.classList.remove("show"), 2500);
 }
 
-// Create Account
-document.getElementById("createAccountForm").addEventListener("submit", (e) => {
-  e.preventDefault();
+// ===== Create Account (only if form exists) =====
+const createForm = document.getElementById("createAccountForm");
+if (createForm) {
+  createForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  const acc = {
-    name: document.getElementById("name").value.trim(),
-    dob: document.getElementById("dob").value,
-    phone: document.getElementById("phone").value,
-    accountType: document.getElementById("accountType").value,
-    address: document.getElementById("address").value.trim(),
-    ifsc: document.getElementById("ifsc").value.toUpperCase(),
-    balance: parseFloat(document.getElementById("initialBalance").value),
-    pin: document.getElementById("pin").value,
-    accountNumber: Date.now(),
-    createdDate: new Date().toLocaleDateString(),
-    transactions: []
-  };
+    const acc = {
+      name: document.getElementById("name").value.trim(),
+      dob: document.getElementById("dob").value,
+      phone: document.getElementById("phone").value,
+      accountType: document.getElementById("accountType").value,
+      address: document.getElementById("address").value.trim(),
+      ifsc: document.getElementById("ifsc").value.toUpperCase(),
+      balance: parseFloat(document.getElementById("initialBalance").value),
+      pin: document.getElementById("pin").value,
+      accountNumber: Date.now(),
+      createdDate: new Date().toLocaleDateString(),
+      transactions: []
+    };
 
-  if (acc.balance < 100) return showNotification("Minimum ₹100 required", "error");
+    if (acc.balance < 100) return showNotification("Minimum ₹100 required", "error");
 
-  accounts.push(acc);
-  saveAccounts();
-  e.target.reset();
-  window.scrollTo(0, 0);
-  showNotification(`✅ Account Created! No: ${acc.accountNumber}`);
-});
+    accounts.push(acc);
+    saveAccounts();
+    e.target.reset();
+    window.scrollTo(0, 0);
+    showNotification(`✅ Account Created! No: ${acc.accountNumber}`);
+  });
+}
 
-// Access Account
-document.getElementById("accessForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("accessName").value.trim().toLowerCase();
-  const pin = document.getElementById("accessPin").value;
-  const found = accounts.filter(a => a.name.toLowerCase() === name && a.pin === pin);
-  if (found.length === 0) return showNotification("Invalid credentials", "error");
+// ===== Access Account (only if form exists) =====
+const accessForm = document.getElementById("accessForm");
+if (accessForm) {
+  accessForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("accessName").value.trim().toLowerCase();
+    const pin = document.getElementById("accessPin").value;
+    const found = accounts.filter(a => a.name.toLowerCase() === name && a.pin === pin);
+    if (found.length === 0) return showNotification("Invalid credentials", "error");
 
-  currentUser = name;
-  document.getElementById("loginCard").classList.add("hidden");
-  document.getElementById("manageCard").classList.remove("hidden");
-  document.getElementById("welcomeMessage").textContent = `Welcome, ${found[0].name}`;
-  displayAccounts(found);
-});
+    currentUser = name;
+    document.getElementById("loginCard").classList.add("hidden");
+    document.getElementById("manageCard").classList.remove("hidden");
+    document.getElementById("welcomeMessage").textContent = `Welcome, ${found[0].name}`;
+    displayAccounts(found);
+  });
+}
 
+// ===== Account Management Functions =====
 function displayAccounts(list) {
   const c = document.getElementById("accountsList");
+  if (!c) return;
   if (list.length === 0) return c.innerHTML = "<p>No accounts found.</p>";
   c.innerHTML = list.map(a => `
     <div class="account-card" onclick="openModal(${a.accountNumber})">
@@ -97,6 +105,7 @@ function closeModal() {
 
 function renderTransactions() {
   const list = document.getElementById("transactionHistory");
+  if (!list) return;
   if (currentAccount.transactions.length === 0) {
     list.innerHTML = "<li>No transactions yet</li>";
   } else {
@@ -142,6 +151,7 @@ function logout() {
   showNotification("Logged out");
 }
 
+// ===== Theme Toggle =====
 function toggleTheme() {
   document.body.classList.toggle("dark");
   const dark = document.body.classList.contains("dark");
